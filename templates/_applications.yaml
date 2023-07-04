@@ -10,7 +10,7 @@ metadata:
   namespace: {{ $e }}
   # Add this finalizer ONLY if you want these to cascade delete.
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io-{{ $.Chart.AppVersion }}
   # Add labels to your application object.
   labels:
     name: {{ $e }}-{{ $env }}

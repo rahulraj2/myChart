@@ -1,5 +1,6 @@
 {{range $key, $e := .Values.applications.name }}
 {{range $keys, $env := $.Values.environment.name }}
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -8,6 +9,16 @@ metadata:
   list: {{ $env }}-{{ $e }}
   cpu: |
       - {{ $env }}
+  tls.crt: 
+data:
+  myvalue: "Hello World"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $e }}-{{ $env }}
+  list: secret
 data:
   myvalue: "Hello World"
 {{ end }}
